@@ -4,6 +4,7 @@
  *
  * @since 1.0
  */
+
 use yii\grid\GridView;
 use yii\helpers\Html;
 use lajax\translatemanager\models\Language;
@@ -28,7 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'language_id',
+            [
+                'attribute' => 'language_id',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a($model->language_id, ['/translatemanager/language/translate', 'language_id' => $model->language_id]);
+                }
+            ],
             'name_ascii',
             [
                 'format' => 'raw',

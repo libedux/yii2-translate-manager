@@ -31,14 +31,14 @@ TranslateManagerAsset::register($this);
         <div class="wrap">
             <?php
             NavBar::begin([
-                'brandLabel' => 'Lajax TranslateManager',
-                'brandUrl' => Yii::$app->homeUrl,
+                'brandUrl' => null,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
+                    'styl'
                 ],
+                'brandImage' =>'../../../../../images/logo.jpg'
             ]);
             $menuItems = [
-                ['label' => Yii::t('language', 'Home'), 'url' => ['/']],
                 ['label' => Yii::t('language', 'Language'), 'items' => [
                     ['label' => Yii::t('language', 'List of languages'), 'url' => ['/translatemanager/language/list']],
                     ['label' => Yii::t('language', 'Create'), 'url' => ['/translatemanager/language/create']],
@@ -48,7 +48,8 @@ TranslateManagerAsset::register($this);
                 ['label' => Yii::t('language', 'Im-/Export'), 'items' => [
                     ['label' => Yii::t('language', 'Import'), 'url' => ['/translatemanager/language/import']],
                     ['label' => Yii::t('language', 'Export'), 'url' => ['/translatemanager/language/export']],
-                ]],
+                ],],
+                ['label' => Yii::t('language', 'Admin Panel'), 'url' => ['/']],
             ];
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
@@ -75,7 +76,19 @@ TranslateManagerAsset::register($this);
         <footer class="footer">
             <div class="container">
                 <p class="pull-left">&copy; Lajax TranslateManager <?= date('Y') ?></p>
-                <p class="pull-right"><?= Yii::powered() ?></p>
+                <div class="dropdown dropup pull-right">
+                    <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown" style="padding: 0">
+                        <?= '<img src="/images/' . Yii::$app->language . '.png" height="20px"; width="20px">' . ' ' . \common\helpers\AppHelper::getCountryName(Yii::$app->language) ; ?>
+
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <?php foreach (Yii::$app->params['supportedLanguages'] as $lang): ?>
+
+                            <li><a href="/site/set-lang?langInfo=<?= $lang ?>"><img
+                                        src="/images/<?= $lang ?>.png" height="20px"; width="20px"> <?= \common\helpers\AppHelper::getCountryName($lang) ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
             </div>
         </footer>
         <?php $this->endBody() ?>
