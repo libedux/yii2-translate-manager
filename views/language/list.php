@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'language_id',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->language_id, ['/translatemanager/language/translate', 'language_id' => $model->language_id]);
+                    return Html::a($model->language_id, ['/translatemanager/language/translate', 'language' => $model->language_id]);
                 }
             ],
             'name_ascii',
