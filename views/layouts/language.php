@@ -75,7 +75,7 @@ JS
         Breadcrumbs::widget([
             'homeLink' => [
                 'label' => 'Home',
-                'url' => '/my/url',
+                'template' => "<li><a href='/translatemanager/language/list' target='_blank'>Home</a></li>"
             ],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ])
