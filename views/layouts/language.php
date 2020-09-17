@@ -20,6 +20,7 @@ $this->registerJs(<<<JS
     $('.alert-success').animate({opacity: 1.0}, 3000).fadeOut('slow');
 JS
 );
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -35,6 +36,19 @@ JS
 
         .navbar-brand img {
             height: 110%;
+        }
+
+        .breadcrumb {
+            overflow-x: auto;
+            display: flex;
+        }
+
+        .breadcrumb > li {
+            white-space: nowrap;
+        }
+
+        .breadcrumb > li:last-child {
+            padding-right: 15px;
         }
 
     </style>
@@ -73,10 +87,6 @@ JS
     <div class="container">
         <?=
         Breadcrumbs::widget([
-            'homeLink' => [
-                'label' => 'Home',
-                'template' => "<li><a href='/translatemanager/language/list' target='_blank'>Home</a></li>"
-            ],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ])
         ?>
